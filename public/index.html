@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row" style="padding-top: 50px;">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <input type="text" class="form-control" name="" placeholder="Lat" id="lat">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="" placeholder="Lng" id="lng">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-sm" id="btn">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+  <script>
+    var socket = io('http://localhost:3000');
+    socket.on('receive', (data) => {
+      console.log(`recieved data is ${data}`);
+    }) 
+    const btn = document.querySelector("#btn").addEventListener('click', function() {
+      const lat = document.querySelector("#lat");
+      const lng = document.querySelector("#lng");
+      const data = {
+        latitude: parseFloat(lat.value), 
+        longitude: parseFloat(lng.value)
+      };
+      socket.emit('insert', data);
+    })
+    
+  </script>
+</body>
+
+</html>
