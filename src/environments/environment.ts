@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  gmapsApi: 'AIzaSyBzKn2W6GOZ4gvEMx38LQLEaQykRoWNf9E'
+  gmapsApi: ''
 };
 
 /*
